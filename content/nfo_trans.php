@@ -3,15 +3,15 @@
 		<label>INFO TRANSAKSI BARANG</label>
 	</div>
 	<div class="panel-body">
-		<?php 
+		<?php
 
 		$id=$_GET['id'];
 		include 'assets/koneksi.php';
-		$query = mysql_query("select * from barang join transaksi on barang.idbarang = transaksi.idbarang where transaksi.idtransaksi='$id'");
-		while ($q=mysql_fetch_assoc($query)) {?>
+		$query = $mysqli->query("select * from barang join transaksi on barang.idbarang = transaksi.idbarang where transaksi.idtransaksi='$id'");
+		while ($q=mysqli_fetch_assoc($query)) {?>
 			<table class="table table-striped table-bordered">
 				<tr>
-					<th rowspan="6" width="260px">	
+					<th rowspan="6" width="260px">
 						<img src="gambar/<?php echo $q['gambar'] ?>" height="200px" width="250px">
 				</th>
 			</tr>
@@ -30,12 +30,12 @@
 			<tr>
 				<td>Harga Beli Barang</td>
 				<td>:</td>
-				<td><?php echo $q['hrgbeli'] ?></td>
+				<td><?php echo $q['hrgbl'] ?></td>
 			</tr>
 			<tr>
 				<td>Harga Jual Barang</td>
 				<td>:</td>
-				<td><?php echo $q['hrgjual'] ?></td>
+				<td><?php echo $q['hrgjl'] ?></td>
 			</tr>
 			<tr>
 				<td>Stok Barang</td>
@@ -44,7 +44,7 @@
 			</tr>
 
 		</table>
-		<?php 
+		<?php
 $no=1;
 		 ?>
 		<label><H3>Daftar Transaksi Barang</H3></label>

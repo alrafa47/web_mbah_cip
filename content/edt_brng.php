@@ -1,7 +1,7 @@
-<?php include 'assets/koneksi.php'; 
+<?php include 'assets/koneksi.php';
 $id = $_GET['id'];
-$query = mysql_query("select * from barang where idbarang = '$id'") or die(mysql_error());
-while ($e = mysql_fetch_array($query)) {
+$query = $mysqli->query("select * from barang where idbarang = '$id'") or die(mysql_error());
+while ($e = mysqli_fetch_assoc($query)) {
 	?>
 	<div class="col-md-10 panel panel-default">
 		<div class="panel-heading" style="border: 0px; background-color: white">
@@ -36,7 +36,7 @@ while ($e = mysql_fetch_array($query)) {
 				<div class="form-group">
 					<label>Gambar</label>
 					<input name="file" type="file" class="form-control" value="<?php echo $e['gambar']; ?>">
-				</div>	
+				</div>
 				<?php
 			}
 			?>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 include 'assets/koneksi.php';
 ?>
 
@@ -11,7 +11,7 @@ include 'assets/koneksi.php';
 	}
 </style>
 <div class="col-md-10 panel panel-info" style="padding: 0px;">
-	
+
 
 
 	<div class="panel-heading">
@@ -21,7 +21,7 @@ include 'assets/koneksi.php';
 		<table class="table table-bordered table-striped" >
 			<tr>
 				<th>
-					Nama Barang 
+					Nama Barang
 				</th>
 				<th>
 					Jenis
@@ -33,10 +33,10 @@ include 'assets/koneksi.php';
 					aksi
 				</th>
 			</tr>
-			<?php 
+			<?php
 
-			$cari = mysql_query("select * from barang where stok <=1");
-			$htng= mysql_num_rows($cari);
+			$cari = $mysqli->query("select * from barang where stok <=1");
+			$htng= mysqli_num_rows($cari);
 			if ($htng != 0) {
 				while ($q= mysql_fetch_assoc($cari)) {?>
 				<tr>
@@ -59,7 +59,7 @@ include 'assets/koneksi.php';
 
 			}
 			else{
-				echo "<tr> 
+				echo "<tr>
 				<td colspan='4' style='text-align:center;' height='275px'>
 				<div style='padding-top:95px'>
 				<h3>Tidak ada data</h3> </div>
@@ -74,18 +74,18 @@ include 'assets/koneksi.php';
 		</table>
 	</div>
 	<footer>
-		
+
 	<div class="panel-footer">
 		<div class="row">
 
 			<div class="col-md-6" style="border-right: 1px gray solid">
 				<div id="footer">
 					<label>
-						
-						<?php 
+
+						<?php
 						echo "jumlah barang"."</br>";
-						$barang= mysql_query("select * from barang");
-						$tampil=mysql_num_rows($barang);
+						$barang= $mysqli->query("select * from barang");
+						$tampil=mysqli_num_rows($barang);
 						echo $tampil;
 						?>
 					</label>
@@ -94,11 +94,11 @@ include 'assets/koneksi.php';
 			<div class="col-md-6">
 				<div id="footer">
 					<label>
-						
-						<?php 
+
+						<?php
 						echo "jumlah transaksi"."</br>";
-						$barang= mysql_query("select * from barang");
-						$tampil3=mysql_num_rows($barang);
+						$barang= $mysqli->query("select * from barang");
+						$tampil3=mysqli_num_rows($barang);
 						echo $tampil3;
 						?>
 					</label>

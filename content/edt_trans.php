@@ -1,8 +1,8 @@
-<?php include 'assets/koneksi.php'; 
+<?php include 'assets/koneksi.php';
 $id = $_GET['id'];
-$query = mysql_query("select * from transaksi where idtransaksi='$id'")or die(mysql_error());
-// $query = mysql_query("select transaksi.idtransaksi, barang.nama, barang.jenis, barang.hrgjual, transaksi.jumlah, transaksi.tgl_transaksi from barang join transaksi on barang.idbarang=transaksi.idbarang where transaksi.idtransaksi = '$id'") or die(mysql_error());
-while ($e = mysql_fetch_assoc($query)) {
+$query = $mysqli->query("select * from transaksi where idtransaksi='$id'")or die(mysql_error());
+// $query = $mysqli->query("select transaksi.idtransaksi, barang.nama, barang.jenis, barang.hrgjual, transaksi.jumlah, transaksi.tgl_transaksi from barang join transaksi on barang.idbarang=transaksi.idbarang where transaksi.idtransaksi = '$id'") or die(mysql_error());
+while ($e = mysqli_fetch_assoc($query)) {
 	?>
 	<div class="col-md-10 panel panel-default">
 		<div class="panel-heading" style="border: 0px; background-color: white">
@@ -15,9 +15,9 @@ while ($e = mysql_fetch_assoc($query)) {
 					<label>Barang</label>
 					<select name="barang" class="form-control">
 						<option value="zero">pilih barang</option>
-						<?php 
-						$query1=mysql_query("select * from barang");
-						while ($q= mysql_fetch_assoc($query1)) {
+						<?php
+						$query1=$mysqli->query("select * from barang");
+						while ($q= mysqli_fetch_assoc($query1)) {
 							?>
 							<option value="<?php echo $q['idbarang']; ?>"><?php echo $q['nama']." Jenis :". $q['jenis']."(".$q['stok'].")"; ?></option>
 							<?php
@@ -34,12 +34,12 @@ while ($e = mysql_fetch_assoc($query)) {
 					<label>Jumlah</label>
 					<input name="jml" type="number" min="1"  class="form-control">
 					<!-- value="<?php echo $e['jumlah'] ?>" -->
-				</div>	
+				</div>
 				<?php
 				$idbarang= $q['idbarang'];
 				$jml = $q['jumlah'];
-				$stk=mysql_query("select stok from barang where idbarang='$idbarang'");
-				$row = mysql_fetch_assoc($stk);
+				$stk=$mysqli->query("select stok from barang where idbarang='$idbarang'");
+				$row = mysqli_fetch_assoc($stk);
 				$stok= $row['stok'];
 				$hasil = $stok+$jml;
 				?>
@@ -49,7 +49,7 @@ while ($e = mysql_fetch_assoc($query)) {
 			<?php
 		}
 		if (isset($_POST['submit'])) {
-			mysql_query("update barang set stok='$hasil' where idbarang='$idbarang'");
+			$mysqli->query("update barang set stok='$hasil' where idbarang='$idbarang'");
 		}
 		?>
 	</div>
